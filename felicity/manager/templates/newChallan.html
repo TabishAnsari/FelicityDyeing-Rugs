@@ -1,0 +1,61 @@
+{% extends 'layout.html' %}
+
+{% block title %} New Invoice {% endblock %}
+
+{% block body %}
+
+    <div>
+        <form id="challanForm" onsubmit="event.preventDefault(); createChallan();">
+            <div class="mb-3">
+                <label class="form-label" for="buyer">To:</label>
+                <select class="form-select" name="buyer" id="buyer">
+                    <option value=""selected disabled>Select Receiver</option>
+                    {% for buyer in buyers %}
+                        <option value="{{buyer}}">{{buyer}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="date" class="form-label">Date:</label>
+                <input type="date" required name="date" class="form-control" id="date">
+            </div>
+            <input type="hidden" name="type" value="newChallan">
+            <button type="submit" class="mb-3 ms-5 btn btn-primary">Save</button>
+        </form>
+    </div>
+    <div id="challanEntryFormDiv">
+        <form id="challanEntryForm" onsubmit="event.preventDefault()">
+            <div class="mb-3">
+                <label for="materialName" class="form-label">Material Name:</label>
+                <input type="text" name="materialName" id="materialName" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="shade" class="form-label">Shade:</label>
+                <input type="text" name="shade" id="shade" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="dye" class="form-label">Dye Type:</label>
+                <input type="text" name="dye" id="dye" class="form-control" required>  
+            </div>
+            <div class="mb-3">
+                <label for="befQty" class="form-label">Before Quantity:</label>
+                <input type="number" name="befQty" id="befQty" class="form-control" required>  
+            </div>
+            <div class="mb-3">
+                <label for="aftQty" class="form-label">After Quantity:</label>
+                <input type="number" name="aftQty" id="aftQty" class="form-control" required>  
+            </div>
+            <div class="mb-3">
+                <label for="remark" class="form-label">Remark:</label>
+                <input type="text" name="remark" id="remark" class="form-control" required>
+            </div>
+            <input name="challanNum" id="challanNum" type="hidden">
+            <input type="hidden" name="type" value="newChallanEntry">
+            <div class="mb-3">
+                <button type="submit" onclick="addNewChallanEntry();" class="btn btn-warning">Add More</button>
+                <button type="submit" onclick="challanEntryDone();" class="btn btn-secondary">Done</button>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,67 @@
+html, body {
+  width: 260mm;
+  height: 320mm;
+}
+
+.subDiv{
+  border: black 2px solid;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  margin: .75cm;
+}
+
+.buyerDiv, .infoDiv{
+  width: 45%;
+  height: 100%;
+  display: inline-block;
+}
+
+.infoDiv{
+  text-align: right;
+  margin-left: 8%;
+}
+
+
+
+.centerText {
+  text-align: center;
+}
+
+.buyer {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.buyerAddress {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+td, th{
+  text-align: center;
+}
+
+.ftrrDiv{
+  text-align: center;
+  margin-top: 10%;
+}
+
+.ftrr{
+  display: inline-block;
+  width: 33%
+}
+
+.inWords {
+  font-size:small;
+}
+
+.sign{
+  text-align: end;
+  padding-right: 1cm;
+  margin-top: 1cm;
+}
+
+#signH {
+  margin-top: 2cm;
+} 

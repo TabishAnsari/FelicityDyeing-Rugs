@@ -1,0 +1,69 @@
+{% extends 'layout.html' %}
+
+{% block title %} New Invoice {% endblock %}
+
+{% block body %}
+
+    <div id="infoForm">
+        <form id="invoiceForm" onsubmit="event.preventDefault(); create();">
+            <div class="mb-3">
+                <label class="form-label" for="buyer">Buyer:</label>
+                <select class="form-select" name="buyer" id="buyer">
+                    <option value=""selected disabled>Select Buyer</option>
+                    {% for buyer in buyers %}
+                        <option value="{{buyer}}">{{buyer}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="date" class="form-label">Date:</label>
+                <input type="date" required name="date" class="form-control" id="date">
+            </div>
+            <input type="hidden" name="type" value="newInvoice">
+            <button type="submit" class="mb-3 ms-5 btn btn-primary">Save</button>
+        </form>
+    </div>
+    <div id="entryFormDiv">
+        <form id="entryForm" onsubmit="event.preventDefault()">
+            <div class="mb-3">
+                <label for="parti" class="form-label">Particular:</label>
+                <input type="text" name="particular" id="parti" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="hsnnum" class="form-label">HSN/SAC:</label>
+                <input type="number" name="hsnnum" id="hsnnum" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="shade" class="form-label">Shade:</label>
+                <input type="text" name="shade" id="shade" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="challanNum" class="form-label">Challan no.:</label>
+                <input type="number" name="challanNum" id="challanNum" class="form-control" required>  
+            </div>
+            <div class="mb-3">
+                <label for="prgNum" class="form-label">Program no.:</label>
+                <input type="number" name="prgNum" id="prgNum" class="form-control" required>  
+            </div>
+            <div class="mb-3">
+                <label for="dye" class="form-label">Dye Type:</label>
+                <input type="text" name="dye" id="dye" class="form-control" required>  
+            </div>
+            <div class="mb-3">
+                <label for="qty" class="form-label">Quantity:</label>
+                <input type="number" name="qty" id="qty" class="form-control" required>  
+            </div>
+            <div class="mb-3">
+                <label for="rate" class="form-label">Rate:</label>
+                <input type="number" name="rate" id="rate" class="form-control" required>  
+            </div>
+            <input name="invoicenum" id="invoicenum" type="hidden">
+            <input type="hidden" name="type" value="newEntry">
+            <div class="mb-3">
+                <button type="submit" onclick="addNew();" id="add" class="btn btn-warning">Add More</button>
+                <button type="submit" onclick="entryDone();" id="done" class="btn btn-secondary">Done</button>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

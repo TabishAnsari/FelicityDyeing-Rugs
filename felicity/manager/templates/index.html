@@ -1,0 +1,108 @@
+{% extends 'layout.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+<div class="ms-5">
+    <h5 class="mb-3"> Create</h5>
+    <div class="">
+        <a href="{% url 'createInvoice' %}"><button class="me-3 btn btn-warning">New Invoice</button></a>
+        <a href="{% url 'createChallan' %}"><button class="me-3 btn btn-warning">New Challan</button></a>
+        <a id="buyerButton" href="{% url 'createBuyer' %}"><button class="btn btn-secondary">Buyers</button></a>
+    </div>
+</div>
+
+<hr/>
+<div class="ms-5">
+    <h5>Recent Invoices:</h5>
+    <div class="container container-fluid">
+        <table class="table invoiceTable">
+            <tr>
+                <th>Invoice No.</th>
+                <th>Buyer</th>
+                <th>Dated</th>
+                <th>Action</th>
+            </tr>
+            {% for invoice in invoices %}
+                <tr>
+                    <td>{{invoice.id}}</td>
+                    <td>{{invoice.buyer}}</td>
+                    <td>{{invoice.date}}</td>
+                    <td class="row">
+                        <div class="text-center">
+                            <div class="btn-group">
+                                <form action="{% url 'invoice' %}" method="GET">
+                                    <input type="hidden" value="{{invoice.id}}" name="id" >
+                                    <button class="btn btn-info me-2" type="submit">View</button>
+                                </form>
+                                <form action="{% url 'invoice' %}" method="POST" onsubmit="return confirm ('Are you sure?')">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="deleteInvoice" value="{{invoice.id}}">
+                                    <button class="btn btn-danger" type="submit">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+<hr/>
+<div class="ms-5">
+    <h5>Recent Challans:</h5>
+    <div class="container container-fluid">
+        <table class="table challanTable">
+            <thead>
+                <tr>
+                    <th>Challan No.</th>
+                    <th>To</th>
+                    <th>Dated</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for challan in challans %}
+                    <tr>
+                        <td>{{challan.id}}</td>
+                        <td>{{challan.receiver}}</td>
+                        <td>{{challan.date}}</td>
+                        <td class="row">
+                            <div class="text-center">
+                                <div class="btn-group">
+                                    <form action="{% url 'challan' %}" method="GET">
+                                        <input type="hidden" value="{{challan.id}}" name="id" >
+                                        <button class="btn btn-info me-2" type="submit">View</button>
+                                    </form>
+                                    <form action="{% url 'challan' %}" method="POST" onsubmit="return confirm ('Are you sure?')">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="deleteChallan" value="{{challan.id}}">
+                                        <button class="btn btn-danger" type="submit">Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+
+
+
+
+
+
+
+<div class="row actionDiv">
+    <form action="{% url 'challan' %}" method="GET">
+        <input type="hidden" value="{{invoice.id}}" name="id" >
+        <button class="actionButton btn btn-link" type="submit">View</button>
+    </form>
+    <form action="{% url 'challan' %}" method="GET">
+        <input type="hidden" value="{{invoice.id}}" name="id" >
+        <button class="actionButton btn btn-link" type="submit">View</button>
+    </form>
+</div>

@@ -1,0 +1,35 @@
+#entryFormDiv{
+    display: none;
+}
+
+#challanEntryFormDiv{
+    display: none;
+}
+
+.errorMessage{
+    color: red;
+}
+
+.inputForms{
+    float: left;
+    width: 35%;
+    margin-left: 2%;
+}
+
+#buyerFormHeading{
+    margin-left: 2%;
+}
+
+#buyerListDiv {
+    float: right;
+    width: 40%;
+    text-align: center;
+}
+
+#buyerButton{
+    float: right;
+    margin-right: 3%;
+}
+td, th{
+    text-align: center;
+}

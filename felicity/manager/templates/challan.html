@@ -1,0 +1,74 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="{% static '/css/invoiceStyle.css' %}" rel="stylesheet">
+    <title>Challan {{ challan.id }}</title>
+</head>
+<body>
+    <div class="mainDiv" >
+        <div class="subDiv" >
+            <h1 class="centerText mt-2"><u>{{self.name}}</u></h1>
+            <p class="centerText mb-0">{{ self.address }} {{self.state}}</p>
+            <p class="centerText">GSTIN: {{self.gstin}}</p>
+            <h3 class="centerText"><u>Job Work Challan</u></h3>
+            <hr style="height:2px; background-color: black">
+            <div>
+                <div class="buyerDiv">
+                    <h6 class="ms-2">To:</h6>
+                    <h6 class="buyer ms-2"><strong>{{receiver.name}}</strong></h6>
+                    <p class="buyerAddress ms-2">{{receiver.address}}</p>
+                    <p class="mb-0 ms-2"><b>GSTIN:</b> {{receiver.gstin}}</p>
+                    <p class="ms-2"><b>State:</b> {{receiver.state}}</p>
+
+                </div>
+                <div class="infoDiv">
+                    <p><b>Challan No.</b> : {{challan.id}}</p>
+                    <p><strong>Date : </strong>{{challan.date}}</p>
+                </div>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Sn.</th>
+                        <th scope="col">Material Name</th>
+                        <th scope="col">Shade</th>
+                        <th scope="col">Dyeing Type</th>
+                        <th scope="col">Bef. Qty</th>
+                        <th scope="col">Aft. Qty</th>
+                        <th scope="col">Remarks</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for entry in entries %}
+                      <tr>
+                          <th scope="row">{{entry.serialNum}}</th>
+                          <td>{{entry.materialName}}</td>
+                          <td>{{entry.shade}}</td>
+                          <td>{{entry.dyeingType}}</td>
+                          <td>{{entry.befQty}}</td>
+                          <td>{{entry.aftQty}}</td>
+                          <td>{{entry.remark}}</td>
+                    {% endfor %}
+                    <tr>
+                        <td colspan="4">Grand Total:</td>
+                        <td>{{befQty}}</td>
+                        <td>{{aftQty}}</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="ftrrDiv">
+        <h6 class="ftrr">Received By,</h6><h6 class="ftrr">Prepared By,</h6><h6 class="ftrr">Authorised By,</h6>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
